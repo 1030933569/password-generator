@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态密码生成器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔐 动态密码生成器</h1>
+            <p class="subtitle">SHA256 + Base64 双重加密</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 今日密码卡片 -->
+            <div class="card today-card">
+                <h2>📅 今日密码</h2>
+                <div class="date-display" id="todayDate">加载中...</div>
+                <div class="password-display" id="todayPassword">
+                    <span class="password-text">--------</span>
+                    <button class="copy-btn" onclick="copyPassword('today')" title="复制密码">
+                        📋
+                    </button>
+                </div>
+                <button class="btn btn-primary" onclick="generateToday()">
+                    🔄 刷新今日密码
+                </button>
+            </div>
+
+            <!-- 自定义日期卡片 -->
+            <div class="card custom-card">
+                <h2>🗓️ 自定义日期</h2>
+                <div class="date-inputs">
+                    <div class="input-group">
+                        <label for="monthInput">月份</label>
+                        <input type="number" id="monthInput" min="1" max="12" placeholder="1-12">
+                    </div>
+                    <div class="input-group">
+                        <label for="dayInput">日期</label>
+                        <input type="number" id="dayInput" min="1" max="31" placeholder="1-31">
+                    </div>
+                </div>
+                <div class="password-display" id="customPassword" style="display: none;">
+                    <span class="password-text">--------</span>
+                    <button class="copy-btn" onclick="copyPassword('custom')" title="复制密码">
+                        📋
+                    </button>
+                </div>
+                <button class="btn btn-secondary" onclick="generateCustom()">
+                    🔍 生成密码
+                </button>
+            </div>
+
+            <!-- 本周密码卡片 -->
+            <div class="card week-card">
+                <h2>📊 本周密码列表</h2>
+                <div class="week-passwords" id="weekPasswords">
+                    点击下方按钮生成本周密码
+                </div>
+                <button class="btn btn-accent" onclick="generateWeek()">
+                    📈 生成本周密码
+                </button>
+            </div>
+
+            <!-- 密码特点说明 -->
+            <div class="info-card">
+                <h3>ℹ️ 密码特点</h3>
+                <ul>
+                    <li>✅ 8位字母+数字混合</li>
+                    <li>✅ SHA256 + Base64 双重加密</li>
+                    <li>✅ 不区分大小写</li>
+                    <li>✅ 每天自动更换</li>
+                    <li>⚠️ 请勿泄露给非管理员</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>⚠️ 请妥善保管此系统，不要泄露给非管理员！</p>
+        </footer>
+    </div>
+
+    <!-- 提示消息 -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
