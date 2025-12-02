@@ -20,7 +20,7 @@
                 <div class="date-display" id="todayDate">加载中...</div>
                 <div class="password-display" id="todayPassword">
                     <span class="password-text">--------</span>
-                    <button class="copy-btn" onclick="copyPassword('today')" title="复制密码">
+                    <button class="copy-btn" onclick="copyPassword()" title="复制密码">
                         📋
                     </button>
                 </div>
@@ -29,52 +29,6 @@
                 </button>
             </div>
 
-            <!-- 自定义日期卡片 -->
-            <div class="card custom-card">
-                <h2>🗓️ 自定义日期</h2>
-                <div class="date-inputs">
-                    <div class="input-group">
-                        <label for="monthInput">月份</label>
-                        <input type="number" id="monthInput" min="1" max="12" placeholder="1-12">
-                    </div>
-                    <div class="input-group">
-                        <label for="dayInput">日期</label>
-                        <input type="number" id="dayInput" min="1" max="31" placeholder="1-31">
-                    </div>
-                </div>
-                <div class="password-display" id="customPassword" style="display: none;">
-                    <span class="password-text">--------</span>
-                    <button class="copy-btn" onclick="copyPassword('custom')" title="复制密码">
-                        📋
-                    </button>
-                </div>
-                <button class="btn btn-secondary" onclick="generateCustom()">
-                    🔍 生成密码
-                </button>
-            </div>
-
-            <!-- 本周密码卡片 -->
-            <div class="card week-card">
-                <h2>📊 本周密码列表</h2>
-                <div class="week-passwords" id="weekPasswords">
-                    点击下方按钮生成本周密码
-                </div>
-                <button class="btn btn-accent" onclick="generateWeek()">
-                    📈 生成本周密码
-                </button>
-            </div>
-
-            <!-- 密码特点说明 -->
-            <div class="info-card">
-                <h3>ℹ️ 密码特点</h3>
-                <ul>
-                    <li>✅ 8位字母+数字混合</li>
-                    <li>✅ SHA256 + Base64 双重加密</li>
-                    <li>✅ 不区分大小写</li>
-                    <li>✅ 每天自动更换</li>
-                    <li>⚠️ 请勿泄露给非管理员</li>
-                </ul>
-            </div>
         </main>
 
         <footer class="footer">
