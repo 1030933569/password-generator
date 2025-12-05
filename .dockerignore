@@ -1,0 +1,15 @@
+.git
+.github
+.vscode
+Dockerfile
+README.md
+DEPLOY.md
+快速开始.md
+*.zip
+*.log
+node_modules
+__pycache__
+.pytest_cache
+.venv
+venv
+*.pyc

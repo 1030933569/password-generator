@@ -31,6 +31,12 @@
 
         </main>
 
+        <!-- 名人名言 -->
+        <div class="quote-section" id="quoteSection">
+            <p class="quote-text" id="quoteText">"加载中..."</p>
+            <p class="quote-author" id="quoteAuthor">—— </p>
+        </div>
+
         <footer class="footer">
             <p>⚠️ 请妥善保管此系统，不要泄露给非管理员！</p>
         </footer>
@@ -39,6 +45,75 @@
     <!-- 提示消息 -->
     <div class="toast" id="toast"></div>
 
-    <script src="script.js"></script>
+    <script>
+        // 调用后端 API 获取密码
+        async function fetchPassword(date = null) {
+            const url = date ? `/api/password?date=${date}` : '/api/password';
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('请求失败');
+            return res.json();
+        }
+
+        // 生成今日密码
+        async function generateToday() {
+            try {
+                const data = await fetchPassword();
+                document.getElementById('todayDate').textContent = data.date;
+                document.querySelector('.password-text').textContent = data.password;
+            } catch (e) {
+                showToast('❌ 获取密码失败');
+            }
+        }
+
+        // 复制密码
+        function copyPassword() {
+            const pwd = document.querySelector('.password-text').textContent;
+            if (pwd && pwd !== '--------') {
+                navigator.clipboard.writeText(pwd);
+                showToast('✅ 密码已复制');
+            }
+        }
+
+        // 显示提示
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // 从后端 API 获取背景图片 URL
+        async function setRandomBackground() {
+            try {
+                const res = await fetch('/api/background');
+                if (res.ok) {
+                    const data = await res.json();
+                    document.body.style.backgroundImage = `url('${data.url}')`;
+                }
+            } catch (e) {
+                // 失败时使用默认渐变背景（CSS 已定义）
+                console.log('背景加载失败，使用默认渐变');
+            }
+        }
+
+        // 获取随机名言
+        async function fetchQuote() {
+            try {
+                const res = await fetch('/api/quote');
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('quoteText').textContent = `"${data.text}"`;
+                    document.getElementById('quoteAuthor').textContent = `—— ${data.author}`;
+                }
+            } catch (e) {
+                console.log('名言加载失败');
+            }
+        }
+
+        // 页面加载时自动获取今日密码 + 设置随机背景 + 名言
+        setRandomBackground();
+        generateToday();
+        fetchQuote();
+    </script>
 </body>
 </html>
