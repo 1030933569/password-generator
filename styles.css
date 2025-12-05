@@ -8,12 +8,12 @@
     --primary-color: #4facfe;
     --secondary-color: #00f2fe;
     --bg-gradient: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); /* 清新蓝绿渐变 */
-    --card-bg: rgba(255, 255, 255, 0.85); /* 玻璃拟态半透明白 */
-    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
-    --text-primary: #2d3748;
-    --text-secondary: #718096;
-    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    --shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+    --card-bg: rgba(255, 255, 255, 0.55); /* 更透明，融合背景 */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    --shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
 }
 
 body {
@@ -76,8 +76,8 @@ body::before {
 
 .card {
     background: var(--card-bg);
-    backdrop-filter: blur(12px); /* 毛玻璃模糊效果 */
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px); /* 更强的毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 40px 30px;
     box-shadow: var(--shadow);
@@ -112,11 +112,11 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between; /* 两端对齐 */
-    background: #f7fafc;
+    background: rgba(255, 255, 255, 0.5); /* 半透明 */
     padding: 15px 20px;
     border-radius: 16px;
     margin: 0 0 30px 0;
-    border: 2px dashed #e2e8f0; /* 虚线边框增加质感 */
+    border: 2px dashed rgba(255, 255, 255, 0.6); /* 半透明虚线边框 */
     position: relative;
     overflow: hidden;
 }
